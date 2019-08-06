@@ -1,0 +1,7 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Tue Aug 28 17:49:36 CST 2018
+file\:repo/.error=
+http\://maven.seasar.org/maven2/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1535449776000
+http\://maven.seasar.org/maven2/.lastUpdated=1535449774763
+file\:repo/.lastUpdated=1535449774690

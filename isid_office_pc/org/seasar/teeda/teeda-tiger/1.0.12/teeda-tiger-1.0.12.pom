@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The Basics -->
+  <artifactId>teeda-tiger</artifactId>
+  <packaging>jar</packaging>
+  <parent>
+    <groupId>org.seasar.teeda</groupId>
+    <artifactId>teeda-project</artifactId>
+    <version>1.0.12</version>
+    <relativePath>../teeda</relativePath>
+  </parent>
+
+  <!-- More Project Information -->
+  <name>Teeda Tiger</name>
+  <url>http://teeda.seasar.org</url>
+  <profiles>
+    <profile>
+      <id>example</id>
+      <build>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-jar</id>
+                <phase>package</phase>
+                <configuration>
+                  <tasks>
+                    <echo>*** copying jar file ... ***</echo>
+                    <copy
+                      todir="../teeda-html-example/src/main/webapp/WEB-INF/lib"
+                      failonerror="false">
+                      <fileset dir="${project.build.directory}">
+                        <include name="${pom.build.finalName}.jar"/>
+                      </fileset>
+                    </copy>
+                    <copy
+                      todir="../teeda-html-example/src/main/webapp/WEB-INF/lib/sources"
+                      failonerror="false">
+                      <fileset dir="${project.build.directory}">
+                        <include name="${pom.build.finalName}-sources.jar"/>
+                      </fileset>
+                    </copy>
+                  </tasks>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <properties>
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+    </profile>
+  </profiles>
+
+  <!-- Build Settings -->
+  <build>
+    <defaultGoal>validate</defaultGoal>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <!-- Dependency Settings -->
+  <dependencies>
+    <dependency>
+      <groupId>org.seasar.container</groupId>
+      <artifactId>s2-tiger</artifactId>
+      <version>${seasar2.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.seasar.teeda</groupId>
+      <artifactId>teeda-extension</artifactId>
+      <version>${version}</version>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+</project>
